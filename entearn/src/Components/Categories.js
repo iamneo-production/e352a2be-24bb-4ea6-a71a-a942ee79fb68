@@ -12,11 +12,15 @@ function Categories() {
 
  
   const [alignment, setAlignment] = React.useState('Single Player');
+  const [start, setStart] = React.useState('Single Player');
   const handleChange2 = (e, newAlignment) => {
     setAlignment(newAlignment);
   };
   const handleChange = (event) => {
     setCategory(event.target.value);
+  };
+  const handleChange3 = (event) => {
+    setStart(event.target.value);
   };
   return (
     <div className="Categories">
@@ -51,7 +55,20 @@ function Categories() {
             </Select>
         </FormControl>
       </div>
-      
+      <div className='Fields'>
+      <InputLabel>Game Mode</InputLabel>
+      <ToggleButtonGroup
+      color="primary"
+      value={start}
+      exclusive
+      onChange={handleChange3}
+      aria-label="Platform"
+    >
+      <ToggleButton value="create"><b>Create Room</b></ToggleButton>
+      <ToggleButton value="join"><b>Enter Room</b></ToggleButton>
+  
+    </ToggleButtonGroup>
+      </div>
     </div>
   );
 }
