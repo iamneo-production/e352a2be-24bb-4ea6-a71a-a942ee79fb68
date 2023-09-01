@@ -1,12 +1,14 @@
 
 
-import React, { Component} from 'react';
+import React, { Component, useEffect} from 'react';
 import Alert from '@mui/material/Alert';
 import questions from '../questions'
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import { Link } from 'react-router-dom';
+import CircularProgressWithLabel from '../Components/CircularProgress';
 import '../App.css';
+import CircularProgress from '@mui/material/CircularProgress';
 // import correctNotification from '../../assets/audio/correct-answer.mp3';
 // import wrongNotification from '../../assets/audio/wrong-answer.mp3';
 // import buttonSound from '../../assets/audio/button-sound.mp3';
@@ -40,6 +42,7 @@ class Play extends Component {
     // this.buttonSound = React.createRef();
 }
 
+  
 componentDidMount () {
     const { questions, currentQuestion, nextQuestion, previousQuestion } = this.state;
     this.displayQuestions(questions, currentQuestion, nextQuestion, previousQuestion);
@@ -266,7 +269,7 @@ handleFiftyFifty = () => {
 }
 
 startTimer = () => {
-    const countDownTime = Date.now() + 15000;
+    const countDownTime = Date.now() + 60000;
     this.interval = setInterval(() => {
         const now = new Date();
         const distance = countDownTime - now;
@@ -331,7 +334,7 @@ endGame = () => {
         hintsUsed: 5 - state.hints
     };
     setTimeout(() => {
-        this.props.history.push('/play/quizSummary', playerStats);
+        <Link to="quizSummary"></Link>
     }, 1000);
 }
 
@@ -372,20 +375,19 @@ render () {
                         </Typography>
             
                             
-                        
-
                 </div>
                 <div>
-                     <h5>{currentQuestion.question}</h5>
-                    {time.minutes}:{time.seconds}
+                     <Typography display='inline' variant='h5'>{currentQuestion.question}</Typography>
+                     <CircularProgressWithLabel variant="determinate" value={time.seconds} />
+                     
                 </div>
-                <div className="options-container">
-                    <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionA}</p>
-                    <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionB}</p>
+                <div className="option"><Button fullWidth variant="outlined" onClick={this.handleOptionClick} >{currentQuestion.optionA}</Button>
                 </div>
-                <div className="options-container">
-                    <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionC}</p>
-                    <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionD}</p>
+                <div className="option"><Button fullWidth variant="outlined" onClick={this.handleOptionClick} >{currentQuestion.optionB}</Button>
+                </div>
+                <div className="option"><Button fullWidth variant="outlined" onClick={this.handleOptionClick} >{currentQuestion.optionC}</Button>
+                </div>
+                <div className="option"><Button fullWidth variant="outlined" onClick={this.handleOptionClick} >{currentQuestion.optionD}</Button>
                 </div>
 
                 <centered>

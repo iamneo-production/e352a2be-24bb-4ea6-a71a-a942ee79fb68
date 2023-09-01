@@ -10,6 +10,7 @@ import LeaderBoard from './Components/LeaderBoard';
 import Stats from './Components/Stats';
 import AppBar from './Components/AppBar';
 import Quiz from './Components/Quiz';
+import QuizSummary from './Components/QuizSummary';
 function App() {
   return (
     <UserProvider>
@@ -20,6 +21,7 @@ function App() {
            <Routes>
              <Route path="/" element={<SignUp/>}/>
              <Route path="quiz" element={<Quiz/>}/>
+             <Route path="quizSummary" element={<QuizSummary/>}/>
              <Route path="signin" element={<SignIn/>}/>
              <Route path="profile" element={<Profile/>} />
              <Route path="leaderboard" element={<LeaderBoard/>} />

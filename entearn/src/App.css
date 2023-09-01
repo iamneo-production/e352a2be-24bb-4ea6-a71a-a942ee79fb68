@@ -28,6 +28,11 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.option{
+  margin: 6px;
+  text-align: left;
+  padding-left: 1px;
+}
 .Stats{
   margin: 4vh 10vh;
 }
