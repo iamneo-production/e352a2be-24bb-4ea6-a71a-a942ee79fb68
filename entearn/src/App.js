@@ -1,16 +1,16 @@
 
 import './App.css';
-import UserProvider from './Components/store/userProvider';
-import Categories from './Components/Categories';
-import Profile from './Components/Profile';
-import SignIn from './Components/Auth/SignIn';
-import SignUp from './Components/Auth/SignUp';
+import UserProvider from './components/store/userProvider';
+import Categories from './components/Categories';
+import Profile from './components/Profile';
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LeaderBoard from './Components/LeaderBoard';
-import Stats from './Components/Stats';
-import AppBar from './Components/AppBar';
-import Quiz from './Components/Quiz';
-import QuizSummary from './Components/QuizSummary';
+import LeaderBoard from './components/LeaderBoard';
+import Stats from './components/Stats';
+import AppBar from './components/AppBar';
+import Quiz from './components/Quiz';
+import QuizSummary from './components/QuizSummary';
 function App() {
   return (
     <UserProvider>
