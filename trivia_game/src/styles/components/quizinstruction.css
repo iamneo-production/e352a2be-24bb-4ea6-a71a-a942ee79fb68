@@ -1,0 +1,31 @@
+
+.instructions{
+    border: 1px solid darken(black,10%);
+    border-radius: 5px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding: 1rem 3rem;
+    
+}
+#ap
+{
+    color: black;
+    
+}
+h1{
+    color: black;
+    font-size: 2rem;
+    text-align: center;
+}
+
+img {
+    width:80%;
+    height:50%;
+}
+
+@media(max-width:l){
+  .instructions img{
+    width: 100% !important;
+    height: 150% !important;
+  }  
+}

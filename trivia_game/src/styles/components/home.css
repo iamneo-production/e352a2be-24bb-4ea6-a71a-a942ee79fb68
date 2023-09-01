@@ -1,0 +1,93 @@
+#home
+{
+    background-image:url('../../Assets/img/back.jpg') ;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+    width: 100vw;
+    /* opacity: 50%; */
+}
+
+section
+{
+background-color: rgba(224, 208, 208, 0.7);
+padding-left: 2rem;
+padding-right: 2rem;
+height: 80%;
+width: 35%;
+border-radius: 5px;
+}
+
+.cube
+{
+    font-size: 8rem;
+    color: orange;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+.play-button-container
+{
+    width: 100%;
+}
+.play-button
+{
+    background-color:rgb(255, 191, 0);
+    color:  rgb(250, 250, 250);
+    display:block;
+    border-radius:30px;
+    cursor: pointer;
+    padding: 1rem;
+    text-align: center;
+    transition: 0.3% linear all;
+}
+.play-button:hover{
+    background-color: darken(rgb(255,  191, 0),10%);
+    
+}
+.auth-container
+{
+   width: 100%;
+   display: flex;
+   justify-content: space-between; 
+   margin-top: 3rem;
+}
+#login-auth
+{
+background-color: red;
+}
+#signup-auth
+{
+    background-color: chartreuse;
+}
+#login-auth:hover
+{
+background-color:darken(red,20%) ;
+}
+#signup-auth:hover
+{
+    background-color:darken( chartreuse,20%);
+}
+.auth-container .auth-buttons
+{
+    color: azure;
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 1rem 0;
+    text-align: center;
+    width: 45%;
+    transition: 0.3% linear all;
+}
+
+@media (max-width:768px) {
+    #home section{
+        padding: 0 1rem;
+        width: 100%;
+       
+    }
+    
+}
