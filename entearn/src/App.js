@@ -6,18 +6,20 @@ import Profile from './Components/Profile';
 import SignIn from './Components/Auth/SignIn';
 import SignUp from './Components/Auth/SignUp';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import LeaderBoard from './Components/LeaderBoard';
 import Stats from './Components/Stats';
 import AppBar from './Components/AppBar';
+import Quiz from './Components/Quiz';
 function App() {
   return (
+    <UserProvider>
        <BrowserRouter>
            <nav>
               <AppBar/>
            </nav>
            <Routes>
              <Route path="/" element={<SignUp/>}/>
+             <Route path="quiz" element={<Quiz/>}/>
              <Route path="signin" element={<SignIn/>}/>
              <Route path="profile" element={<Profile/>} />
              <Route path="leaderboard" element={<LeaderBoard/>} />
@@ -25,6 +27,7 @@ function App() {
              <Route path="stats" element={<Stats/>} />
         </Routes>
        </BrowserRouter>
+    </UserProvider>
   );
 }
 

@@ -6,22 +6,41 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import {useNavigate} from "react-router-dom"
+import Button from '@mui/material/Button';
 
 function Categories() {
   const [category, setCategory] = React.useState('Movies');
-
- 
+  const navigate = useNavigate();
   const [alignment, setAlignment] = React.useState('Single Player');
   const [start, setStart] = React.useState('Single Player');
   const handleChange2 = (e, newAlignment) => {
     setAlignment(newAlignment);
+    console.log(alignment);
   };
   const handleChange = (event) => {
     setCategory(event.target.value);
+    
   };
   const handleChange3 = (event) => {
     setStart(event.target.value);
   };
+  function room(){
+    return <div className='Fields'>
+    <InputLabel>Entry Type</InputLabel>
+    <ToggleButtonGroup
+    color="primary"
+    value={start}
+    exclusive
+    onChange={handleChange3}
+    aria-label="Platform"
+  >
+    <ToggleButton value="create"><b>Create Room</b></ToggleButton>
+    <ToggleButton value="join"><b>Enter Room</b></ToggleButton>
+
+  </ToggleButtonGroup>
+    </div>
+  }
   return (
     <div className="Categories">
       <div className='Fields'>
@@ -55,20 +74,8 @@ function Categories() {
             </Select>
         </FormControl>
       </div>
-      <div className='Fields'>
-      <InputLabel>Game Mode</InputLabel>
-      <ToggleButtonGroup
-      color="primary"
-      value={start}
-      exclusive
-      onChange={handleChange3}
-      aria-label="Platform"
-    >
-      <ToggleButton value="create"><b>Create Room</b></ToggleButton>
-      <ToggleButton value="join"><b>Enter Room</b></ToggleButton>
-  
-    </ToggleButtonGroup>
-      </div>
+      {alignment=="multi"&& room()}
+      <Button onClick={()=>navigate("/quiz")} variant="contained" >Go</Button>
     </div>
   );
 }

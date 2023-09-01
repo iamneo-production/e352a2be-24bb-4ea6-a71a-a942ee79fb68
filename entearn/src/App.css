@@ -1,7 +1,14 @@
 .App {
   text-align: justify;
 }
-
+.Quiz{
+  margin: 4vh 10vh;
+  display: inline-grid;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

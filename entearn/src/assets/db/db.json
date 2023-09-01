@@ -11,9 +11,9 @@
     {
       "id": 2,
       "firstname": "Test",
-      "lastname": "One",
-      "email": "test1@gmail.com",
-      "password": "test1",
+      "lastname": "two",
+      "email": "test2@gmail.com",
+      "password": "test23456s"
       
     }
     

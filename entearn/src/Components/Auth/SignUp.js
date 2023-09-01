@@ -44,7 +44,6 @@ export default function SignUp() {
 
   const navigate = useNavigate();
   const [errors, setErrors] = React.useState({});
-  const ShowApp=()=>{return <App/>}
   const [user,setUser] = React.useState({firstname:"",
                                         lastname:"", 
                                         email:   "",
@@ -86,7 +85,7 @@ export default function SignUp() {
       email: '',
       password: '',
     });
-    navigate("/");
+    navigate("signin");
 
   };
 
@@ -179,7 +178,6 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={ShowApp}
             >
               Sign Up
             </Button>
