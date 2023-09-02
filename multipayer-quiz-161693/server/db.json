@@ -1,0 +1,52 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "text": "What is the capital of France?",
+        "choices": ["Paris", "London", "Berlin", "Madrid"],
+        "correctChoice": "Paris"
+      },
+      {
+        "id": 2,
+        "text": "What is the capital of India?",
+        "choices": ["Paris", "London", "Delhi", "Madrid"],
+        "correctChoice": "Delhi"
+      },
+      {
+        "id": 3,
+        "text": "What is the capital of srilanka?",
+        "choices": ["Paris", "London", "Berlin", "columbo"],
+        "correctChoice": "columbo"
+      }
+     
+     
+    ],
+    "users": [
+      {
+        "id": 1,
+        "firstname": "Test",
+        "lastname": "One",
+        "email": "test1@gmail.com",
+        "password": "test12345",
+        "gamesplayed":0,
+        "gamesWon":0,
+        "gamesLost":0,
+        "score":0
+        
+      },
+      {
+        "id": 2,
+        "firstname": "Test",
+        "lastname": "two",
+        "email": "test2@gmail.com",
+        "password": "test23456s",
+        "gamesplayed":0,
+        "gamesWon":0,
+        "gamesLost":0,
+        "score":0
+        
+      }
+     
+    ]
+  }
+  
