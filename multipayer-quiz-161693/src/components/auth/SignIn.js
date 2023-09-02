@@ -76,7 +76,7 @@ findUserByEmail(user1.email,user1.password)
       SetUserFound(true);
       updateUser(user);
       Cookies.set('user',JSON.stringify(user.email));
-      dispatch(setUserName(user.firstname));
+      dispatch(setUserName(user.email));
       navigate("/categories");
     } else {
       SetUserFound(false);

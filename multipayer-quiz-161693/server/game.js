@@ -1,7 +1,8 @@
 const games = {};
+
 const moment = require("moment");
 // const { v4: uuidv4 } = require("uuid");
-const { getTriviaQuestions } = require("./services");
+const { getTriviaQuestions ,findUserByEmail,postDataToServer} = require("./services");
 const { shuffle } = require("./helpers");
 const { default: axios } = require("axios");
 
@@ -43,7 +44,7 @@ const createGame = async (id) => {
   };
 };
 
-const addPlayer = ({ id, name, room }) => {
+const addPlayer = ({ id, name, room ,email}) => {
   if (games[room] !== undefined) {
     games[room].players.push({
       id,
@@ -51,6 +52,7 @@ const addPlayer = ({ id, name, room }) => {
       isReady: false,
       answers: {},
       score: 0,
+      Email:email
     });
   }
   return { error: "Game not found" };
@@ -78,10 +80,10 @@ const gameLoop = async (
   updateGameStateEmitter
 ) => {
   const roundStartTransitionDuration = 5000; // in milliseconds
-  const roundEndTransitionDuration = 5000; // in milliseconds
+  const roundEndTransitionDuration = 500; // in milliseconds
   const roundDuration = 10000; // in milliseconds
   let currentQuestion = games[room].currentQuestionNo;
-  const questions = games[room].questions;
+  const questions = shuffle(games[room].questions);
   updateGameStatus(room, "started");
 
   while (currentQuestion <= games[room].questions.length) {
@@ -144,6 +146,8 @@ const gameLoop = async (
   updateGameStateEmitter(games[room], room);
   
   console.log(games[room]);
+ // const room = games[room].players;
+ // const userdata = room.find((obj) =>{id === obj.id })  //findUserByEmail()
   // TODO: Remove game room since game has ended
 
   delete games[room];

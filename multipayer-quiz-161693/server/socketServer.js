@@ -63,8 +63,8 @@ io.on('connect', (socket) => {
   console.log(`A user connected:${socket.id}`);
 
    // Join room handler
-   socket.on("join", async ({ name, room }, callback) => {
-    const { error, user } = addUser({ id: socket.id, name, room });
+   socket.on("join", async ({ name, room,email }, callback) => {
+    const { error, user } = addUser({ id: socket.id, name, room,email });
 
     if (error) return callback({ error: error });
 
@@ -72,7 +72,7 @@ io.on('connect', (socket) => {
     const { game, error: getGameError } = getGameByID(room);
     if (getGameError) {
       await createGame(room);
-      addPlayer({ id: socket.id, name, room });
+      addPlayer({ id: socket.id, name, room , email});
     } else {
       if (game.status !== "pending") {
         return callback({ error: "Game already started" });

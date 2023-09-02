@@ -13,10 +13,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
-const pages = [<Link to='categories'><Button variant="contained">Play Quiz!</Button></Link>, <Link to='leaderboard'><Button variant="contained" >Leader Board</Button></Link>,<Link to='stats'><Button variant="contained" >Stats</Button></Link> ];
-const settings = [<Link to='profile'><Button variant="text">Profile</Button></Link>, <Link to="signin"><Button>Logout</Button></Link>];
+import { useDispatch } from 'react-redux';
+import { setUserName } from '../store/user';
+
 
 function ResponsiveAppBar() {
+
+  const dispatch = useDispatch();
+
+  const pages = [<Link to='categories'><Button variant="contained">Play Quiz!</Button></Link>,<Link to='stats'><Button variant="contained" >Stats</Button></Link> ];
+  const settings = [<Link to='profile'><Button variant="text">Profile</Button></Link>, <Link to="signin" onClick={()=>dispatch(setUserName(""))}><Button>Logout</Button></Link>];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -56,7 +62,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            WinQ
+            Trivia Quiz
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -112,7 +118,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            WinQ
+            Trivia Quiz
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

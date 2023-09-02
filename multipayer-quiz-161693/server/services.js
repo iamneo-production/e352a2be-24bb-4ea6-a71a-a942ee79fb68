@@ -29,7 +29,27 @@ const postDataToServer=(data)=>{
 
 }
 
+const findUserByEmail = async (email) => {
+    try {
+        const response = await Axios.get('http://localhost:8080/users', {
+            params: {
+                email: email
+            },
+        });
+
+        if (response.data.length > 0) {
+            return response.data[0];
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error('Error finding user:', error);
+        return null;
+    }
+};
+
 module.exports = {
   getTriviaQuestions,
-  postDataToServer
+  postDataToServer,
+  findUserByEmail
 };
