@@ -90,6 +90,7 @@ function Categories() {
         onClick={() => navigate("/game/" + mode + "/" + category)}
         variant="contained"
         size="large"
+       
       >
         Go
       </Button>

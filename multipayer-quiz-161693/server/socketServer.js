@@ -65,6 +65,7 @@ io.on('connect', (socket) => {
    // Join room handler
    socket.on("join", async ({ name, room,email }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room,email });
+    console.log(email);
 
     if (error) return callback({ error: error });
 
@@ -77,7 +78,7 @@ io.on('connect', (socket) => {
       if (game.status !== "pending") {
         return callback({ error: "Game already started" });
       }
-      addPlayer({ id: socket.id, name, room });
+      addPlayer({ id: socket.id, name, room,email });
     }
 
     io.to(user.room).emit("roomData", {

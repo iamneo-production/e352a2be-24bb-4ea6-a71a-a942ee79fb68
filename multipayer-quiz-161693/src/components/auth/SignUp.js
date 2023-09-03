@@ -39,10 +39,14 @@ export default function SignUp() {
 
   const navigate = useNavigate();
   const [errors, setErrors] = React.useState({});
-  const [user,setUser] = React.useState({firstname:"",
-                                        lastname:"", 
-                                        email:   "",
-                                        password: "" });
+  const [user,setUser] = React.useState({ firstname: '',
+                                          lastname: '',
+                                          email: '',
+                                          password: '',
+                                          gamesplayed:0,
+                                          gamesWon:0,
+                                          gamesLost:0,
+                                          score:0 });
   const handleSubmit = (event) => {
     event.preventDefault();
     const validationErrors = {};
@@ -79,8 +83,12 @@ export default function SignUp() {
       lastname: '',
       email: '',
       password: '',
+      gamesplayed:0,
+      gamesWon:0,
+      gamesLost:0,
+      score:0
     });
-    navigate("signin");
+    navigate("/signin");
 
   };
 
@@ -167,7 +175,7 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            <Link to="app">
+           
             <Button
               type="submit"
               fullWidth
@@ -176,7 +184,7 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            </Link>
+           
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to="signin" variant="body2">

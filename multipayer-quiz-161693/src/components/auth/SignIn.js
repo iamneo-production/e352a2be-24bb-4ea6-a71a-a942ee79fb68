@@ -149,7 +149,7 @@ findUserByEmail(user1.email,user1.password)
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <Link href="/" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

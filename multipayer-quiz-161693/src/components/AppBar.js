@@ -15,14 +15,15 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setUserName } from '../store/user';
+import Cookies from 'js-cookie';
 
 
 function ResponsiveAppBar() {
 
   const dispatch = useDispatch();
 
-  const pages = [<Link to='categories'><Button variant="contained">Play Quiz!</Button></Link>,<Link to='stats'><Button variant="contained" >Stats</Button></Link> ];
-  const settings = [<Link to='profile'><Button variant="text">Profile</Button></Link>, <Link to="signin" onClick={()=>dispatch(setUserName(""))}><Button>Logout</Button></Link>];
+  const pages = [<Link to='categories'><Button variant="contained">Play Quiz!</Button></Link>,<Link to='/stats'><Button variant="contained" >Stats</Button></Link> ];
+  const settings = [<Link to='profile'><Button variant="text">Profile</Button></Link>, <Link to="signin" onClick={()=>{dispatch(setUserName("")); Cookies.remove('user')}}><Button>Logout</Button></Link>];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -51,7 +52,7 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/categories"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

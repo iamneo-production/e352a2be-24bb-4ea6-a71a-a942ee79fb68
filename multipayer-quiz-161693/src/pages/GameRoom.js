@@ -15,6 +15,7 @@ import GameView from '../components/GameView/index';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { setSocketID } from '../store/user';
 import io from 'socket.io-client';
+import Cookies from 'js-cookie';
 
 const ENDPOINT = 'http://localhost:3002';
 
@@ -24,7 +25,9 @@ const GameRoom = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { name,userName } = useSelector((state) => state.user);
+  const { name } = useSelector((state) => state.user);
+  let userName = Cookies.get('user');
+  userName = userName ? userName.replace(/"/g, '') : null;
   const [users, setUsers] = useState([]);
   const [isSocketJoined, setIsSocketJoined] = useState(false);
   const [isReady, setIsReady] = useState(false);
@@ -48,7 +51,7 @@ const GameRoom = () => {
     return () => {
       socket.disconnect();
     };
-  }, [dispatch, id, name]);
+  }, [dispatch, id, name,userName]);
 
   useEffect(() => {
     socket.on('roomData', ({ users }) => {

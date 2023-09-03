@@ -1,9 +1,5 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
-//import { Suspense, lazy } from "react";
-
-// const GameRoom = lazy(() => import("./pages/GameRoom"));
-// const Home = lazy(() => import("./pages/Home"));
 import GameRoom from './pages/GameRoom';
 import Home from './pages/Home';
 import Categories from './components/Categories';
@@ -15,9 +11,7 @@ import Stats from './components/Stats';
 import AppBar from './components/AppBar';
 import {PlaywithRouter} from "./components/Quiz";
 import QuizSummary from './components/QuizSummary';
-// import {
-//   CSSReset,
-// } from "@chakra-ui/react";
+import ProtectedRoutes from "./protectedRoutes";
 
 
 const AllRoutes = () => {
@@ -30,17 +24,19 @@ const AllRoutes = () => {
               <AppBar/>
            </nav>
       <Routes>
-       
-          <Route exact path="/room/:id" Component={GameRoom}></Route>
-          <Route exact path="/game/:mode/:cat" Component={Home}></Route>
-            <Route path="/" element={<SignUp/>}/>
+           <Route path="/" element={<SignUp/>}/>
+           <Route path="/signin" element={<SignIn/>}/>
+              
+           <Route element={<ProtectedRoutes/>}> 
+             <Route exact path="/room/:id" Component={GameRoom}></Route>
+             <Route exact path="/game/:mode/:cat" Component={Home}></Route>
              <Route path="/quiz" Component={PlaywithRouter} />
              <Route path="/quizSummary" element={<QuizSummary/>}/>
-             <Route path="/signin" element={<SignIn/>}/>
              <Route path="/profile" element={<Profile/>} />
              <Route path="/leaderboard" element={<LeaderBoard/>} />
              <Route path="/categories" element={<Categories/>} />
              <Route path="/stats" element={<Stats/>} />
+           </Route>    
       </Routes>
     </Router>
     

@@ -1,16 +1,14 @@
 const games = {};
 
 const moment = require("moment");
-// const { v4: uuidv4 } = require("uuid");
-const { getTriviaQuestions ,findUserByEmail,postDataToServer} = require("./services");
+const { getTriviaQuestions ,findUserByEmail,updateUserdata} = require("./services");
 const { shuffle } = require("./helpers");
-const { default: axios } = require("axios");
 
 const createGame = async (id) => {
   let questions = [];
   try {
     const data = await getTriviaQuestions();
-    console.log(data);
+    // console.log(data);
     questions = await data.map((question) => {
       const options = [...question.choices];
       shuffle(options);
@@ -45,6 +43,7 @@ const createGame = async (id) => {
 };
 
 const addPlayer = ({ id, name, room ,email}) => {
+  console.log(email+"in addplayer");
   if (games[room] !== undefined) {
     games[room].players.push({
       id,
@@ -144,14 +143,61 @@ const gameLoop = async (
   updateGameStatus(room, "ended");
   // TODO: Socket Emit event to update game state
   updateGameStateEmitter(games[room], room);
-  
-  console.log(games[room]);
- // const room = games[room].players;
- // const userdata = room.find((obj) =>{id === obj.id })  //findUserByEmail()
+  // console.log(games[room].players);
+  updateStats(games[room]);
+
   // TODO: Remove game room since game has ended
 
   delete games[room];
 };
+
+
+
+const updateStats = async(game) => {
+  if (Array.isArray(game.players) && game.players.length > 0) {
+    const sortedPlayers = game.players.slice().sort((a, b) => b.score - a.score);
+    // console.log(sortedPlayers);
+     const users = await Promise.all(sortedPlayers.map(async (player) => {
+      const user = await findUserByEmail(player.Email);
+      // console.log(`Original score for ${user.email}: ${user.score}`);
+      return user;
+    }));
+
+    // console.log(users);
+    if(users.length === 1){
+      const player = users[0];
+      player.gamesplayed += 1;
+      player.score += sortedPlayers[0].score;
+      //console.log(users);
+       const updateduser = await updateUserdata(users[0].id, users[0]);
+      console.log(updateduser);
+    }
+    else if(users.length >1){
+      const winner = users[0];
+      for(let i =0; i<users.length; i++){
+        users[i].gamesplayed +=1;
+        users[i].score += sortedPlayers[i].score;
+        if(users[i] === winner){
+          users[i].gamesWon +=1;
+        }else{
+          users[i].gamesLost+=1;
+        }
+
+      const updateduser = await updateUserdata(users[i].id, users[i]);
+      console.log(updateduser);
+      }
+    //console.log(users);
+    // users.forEach(async(user)=> await postDataToServer(user.id, user))
+    }else {
+    console.log('Not enough players to update stats.');
+  }
+
+    // Now, sortedPlayers contains players sorted by score in descending order
+  } else {
+    console.log('No players to sort.');
+  }
+}
+
 
 const updateGameStatus = (room, newStatus) => {
   if (games[room] !== undefined) {

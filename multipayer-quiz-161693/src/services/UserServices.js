@@ -1,5 +1,5 @@
-import http from '../util/http';
-import axios from 'axios';
+ import http from '../util/http';
+ import axios from 'axios';
 
 export const getAllUsers = async () => {
     try {
@@ -17,6 +17,25 @@ export const getuser = async (id) => {
         return response.data;
     } catch (error) {
         console.error('Error getting user:', error);
+        return null;
+    }
+};
+
+export const findUser = async (email) => {
+    try {
+        const response = await axios.get('http://localhost:8080/users', {
+            params: {
+                email: email
+            },
+        });
+
+        if (response.data.length > 0) {
+            return response.data[0];
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error('Error finding user:', error);
         return null;
     }
 };

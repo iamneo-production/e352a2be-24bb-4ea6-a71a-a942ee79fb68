@@ -1,11 +1,10 @@
 
-// const fetch = require("node-fetch");
 const Axios = require("axios");
 
 const getTriviaQuestions = () => {
   return Axios.get(`http://localhost:8080/questions`)
     .then((res) => {
-      console.log("Response from server:", res.data);
+      // console.log("Response from server:", res.data);
       return res.data})
     // .then((json) => {
     //   if (json.response_code !== 0) {
@@ -19,15 +18,27 @@ const getTriviaQuestions = () => {
     });
 };
 
-const postDataToServer=(data)=>{
-  return Axios.post(`http://localhost:8080/users/`,data)
-              .then((res)=>{console.log(res.data)
-                    return res.data})
-              .catch((err)=>{
-                  throw new Error(err.message || "posting the data failed");
-              });
+const updateUserdata = async (id, data) => {
+  const url = `http://localhost:8080/users/${id}`;
+  console.log(`Sending PUT request to: ${url}`);
+  console.log('Data to send:', data);
 
-}
+  try {
+    const response = await Axios.put(url, data);
+
+    if (response.status === 200) {
+      console.log('Update successful:', response.data);
+      return response.data;
+    } else {
+      console.error('Update failed with status code:', response.status);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error updating user:', error);
+    return null;
+  }
+};
+
 
 const findUserByEmail = async (email) => {
     try {
@@ -50,6 +61,6 @@ const findUserByEmail = async (email) => {
 
 module.exports = {
   getTriviaQuestions,
-  postDataToServer,
+  updateUserdata,
   findUserByEmail
 };
