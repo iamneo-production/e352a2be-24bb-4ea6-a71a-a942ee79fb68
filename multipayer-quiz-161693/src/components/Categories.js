@@ -40,7 +40,7 @@ function Categories() {
       gap="20px"
     >
       <Typography variant="h1" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
-        Multiplayer Trivia
+        WinQ
       </Typography>
 
       <div className='Fields'>

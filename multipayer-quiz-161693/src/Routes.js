@@ -28,7 +28,7 @@ const AllRoutes = () => {
            <Route path="/signin" element={<SignIn/>}/>
               
            <Route element={<ProtectedRoutes/>}> 
-             <Route exact path="/room/:id" Component={GameRoom}></Route>
+             <Route exact path="/room/:id/:mode" Component={GameRoom}></Route>
              <Route exact path="/game/:mode/:cat" Component={Home}></Route>
              <Route path="/quiz" Component={PlaywithRouter} />
              <Route path="/quizSummary" element={<QuizSummary/>}/>

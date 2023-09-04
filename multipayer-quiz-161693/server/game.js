@@ -78,11 +78,12 @@ const gameLoop = async (
   updateLeaderboardEmitter,
   updateGameStateEmitter
 ) => {
-  const roundStartTransitionDuration = 5000; // in milliseconds
-  const roundEndTransitionDuration = 500; // in milliseconds
+  const roundStartTransitionDuration = 3000; // in milliseconds
+  const roundEndTransitionDuration = 1000; // in milliseconds
   const roundDuration = 10000; // in milliseconds
   let currentQuestion = games[room].currentQuestionNo;
   const questions = shuffle(games[room].questions);
+  
   updateGameStatus(room, "started");
 
   while (currentQuestion <= games[room].questions.length) {

@@ -22,7 +22,7 @@ const ENDPOINT = 'http://localhost:3002';
 let socket;
 
 const GameRoom = () => {
-  const { id } = useParams();
+  const { id, mode } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useSelector((state) => state.user);
@@ -36,6 +36,7 @@ const GameRoom = () => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCopied, setIsCopied] = useState(false);
+  const isReadyButtonDisabled = mode === 'multi' && users.length > 1;
 
   useEffect(() => {
     socket = io.connect(ENDPOINT);
@@ -119,7 +120,7 @@ const GameRoom = () => {
                   {id}
                 </Button>
               </CopyToClipboard>
-              <Tooltip label="Copied!" placement="right-end" open={isCopied}>
+              <Tooltip title="Copied!" placement="right-end" open={isCopied}>
                 <span />
               </Tooltip>
             </p>
@@ -146,14 +147,21 @@ const GameRoom = () => {
                       </Button>
                     </div>
                   ))}
+                  {mode ==="multi" && <Button
+                        variant="outlined"
+                        color= 'error'
+                        style={{ marginBottom: '0.5rem' }}
+                      >
+                        Invite Your Friends to join with GAME ID:{id}
+                      </Button>}<br></br>
                 {gameStatus === 'pending' && (
                   <Button
                     color="secondary"
                     variant="contained"
-                    disabled={isReady}
+                    disabled={mode==="single"? isReadyButtonDisabled: !isReadyButtonDisabled}
                     onClick={sendReadyStatus}
                   >
-                    {isReady ? 'Waiting for players' : 'Ready'}
+                    {isReady ? 'Waiting for players' : 'Start'}
                   </Button>
                 )}
                 {gameStatus === 'started' && (
@@ -178,6 +186,15 @@ const GameRoom = () => {
                     </Button>
                   </>
                 )}
+                <Button
+                      color="primary"
+                      variant="contained"
+                      onClick={() => {
+                        navigate('/categories');
+                      }}
+                    >
+                      Go Back
+                    </Button>
               </>
             )}
           </Box>

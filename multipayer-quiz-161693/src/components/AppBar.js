@@ -22,7 +22,7 @@ function ResponsiveAppBar() {
 
   const dispatch = useDispatch();
 
-  const pages = [<Link to='categories'><Button variant="contained">Play Quiz!</Button></Link>,<Link to='/stats'><Button variant="contained" >Stats</Button></Link> ];
+  const pages = [<Link to='/categories' ><Button> Play Quiz!</Button></Link>,<Link to='/stats'><Button>Stats</Button></Link> ];
   const settings = [<Link to='profile'><Button variant="text">Profile</Button></Link>, <Link to="signin" onClick={()=>{dispatch(setUserName("")); Cookies.remove('user')}}><Button>Logout</Button></Link>];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -63,7 +63,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Trivia Quiz
+            WinQ
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -95,8 +95,8 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page,index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -107,7 +107,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/categories"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -119,16 +119,17 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Trivia Quiz
+            WinQ
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page,index) => (
               <Button
-                key={page}
+                key={index}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block' }}
+                
               >
-                {page}
+                <Typography textAlign="center" >{page}</Typography>
               </Button>
             ))}
           </Box>
@@ -155,8 +156,8 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              {settings.map((setting,index) => (
+                <MenuItem key={index} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

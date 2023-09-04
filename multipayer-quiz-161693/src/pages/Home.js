@@ -21,7 +21,7 @@ const Home = () => {
     const name = event.target.name.value;
     dispatch(setName(name));
     const randomRoomID = generate(1).join('-');
-    navigate(`/room/${randomRoomID}`);
+    navigate(`/room/${randomRoomID}/${gamemode.mode}`);
   };
 
   const joinGameHandler = (event) => {
@@ -29,14 +29,14 @@ const Home = () => {
     const name = event.target.name.value;
     const gameID = event.target.gameID.value;
     dispatch(setName(name));
-    navigate(`/room/${gameID}`);
+    navigate(`/room/${gameID}/${gamemode.mode}`);
   };
 
   return (
     <Container component="main" maxWidth="xs">
       <Paper elevation={3} style={{ padding: '2rem', marginTop: '2rem' }}>
         <Typography variant="h5" component="h2" align="center">
-          Multiplayer Trivia
+          {gamemode.mode === "single" ? "SinglePlayer Trivia":"Multiplayer Trivia"}
         </Typography>
          <Tabs value={activeTab} onChange={(e, newValue) => setActiveTab(newValue)} variant="fullWidth">
           <Tab label="New Game" />

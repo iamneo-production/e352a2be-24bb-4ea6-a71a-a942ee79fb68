@@ -41,10 +41,10 @@
       "lastname": "One",
       "email": "test1@gmail.com",
       "password": "test12345",
-      "gamesplayed": 0,
-      "gamesWon": 0,
-      "gamesLost": 0,
-      "score": 500,
+      "gamesplayed": 3,
+      "gamesWon": 1,
+      "gamesLost": 2,
+      "score": 4700,
       "mobileNo": ""
     },
     {
@@ -64,10 +64,10 @@
       "lastname": "NAYUDU",
       "email": "nayuduganasai@gmail.com",
       "password": "surya@1234",
-      "gamesplayed": 5,
-      "gamesWon": 0,
-      "gamesLost": 0,
-      "score": 6700,
+      "gamesplayed": 9,
+      "gamesWon": 2,
+      "gamesLost": 1,
+      "score": 12400,
       "id": 3,
       "mobileNo": "9494482000"
     }
